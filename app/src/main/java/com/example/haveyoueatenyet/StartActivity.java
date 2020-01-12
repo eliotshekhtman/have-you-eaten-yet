@@ -25,19 +25,6 @@ public class StartActivity extends AppCompatActivity implements GestureDetector.
         setContentView(R.layout.activity_start);
 
         mDetector = new GestureDetectorCompat(this, this);
-
-        // Retrieve account id from internal storage
-        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
-        Gson gson = new Gson();
-        long accountId = mPrefs.getLong("accountId", 0);
-        // Retrieve account from online
-        if(accountId > 0) { // If account was found on device, pull data from online for session
-            // TODO: setup online retrieval
-
-        }
-        else { // If first download, make them log in or sign up first
-            openActivity(LogInFragment.class);
-        }
     }
 
     public void openActivity(Class cls) {
@@ -46,7 +33,7 @@ public class StartActivity extends AppCompatActivity implements GestureDetector.
     }
 
     public void logIn(View view) {
-        openActivity(LogInFragment.class);
+        openActivity(InitActivity.class);
     }
 
     @Override
