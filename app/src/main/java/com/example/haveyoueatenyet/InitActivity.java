@@ -1,11 +1,15 @@
 package com.example.haveyoueatenyet;
 
+import android.app.Person;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -76,5 +80,26 @@ public class InitActivity extends AppCompatActivity {
 
         long accountId = mPrefs.getLong("accountId", 0);
         Log.d("STORED ACCOUNT ID", accountId+"");
+    }
+
+    public void logIn(View view) {
+        EditText usernameView = (EditText) findViewById(R.id.usernameLogIn);
+        EditText passwordView = (EditText) findViewById(R.id.passwordLogIn);
+        PersonalActivity.account = fetchAccount(usernameView.getText().toString(), passwordView.getText().toString());
+        // TODO: online retrieval
+    }
+
+    private Account fetchAccount(String username, String password) {
+        // TODO: setup online retrieval
+        Toast.makeText(this, "Online functionality not implemented yet", Toast.LENGTH_SHORT).show();
+        return null;
+    }
+    public void putId(long id) {
+        SharedPreferences mPrefs = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.clear();
+        prefsEditor.putLong("accountId", PersonalActivity.account.getId());
+        prefsEditor.apply();
+        prefsEditor.commit();
     }
 }
