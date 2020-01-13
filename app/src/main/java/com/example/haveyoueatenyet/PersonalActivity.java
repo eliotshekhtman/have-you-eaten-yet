@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +25,20 @@ public class PersonalActivity extends AppCompatActivity implements GestureDetect
         super.onCreate(savedInstanceState);
         Intent intent = this.getIntent();
         setContentView((R.layout.activity_personal));
-
         mDetector = new GestureDetectorCompat(this, this);
+
+        EditText profileName = (EditText) findViewById(R.id.profileName);
+        EditText profileUserName = (EditText) findViewById(R.id.profileUserName);
+        profileName.setText(account.getName());
+        profileUserName.setText(account.getUsername());
+    }
+
+    public void profileSave(View view) {
+        //TODO: fucking upload saved changes
+        EditText profileName = (EditText) findViewById(R.id.profileName);
+        EditText profileUserName = (EditText) findViewById(R.id.profileUserName);
+        account.setName(profileName.getText().toString());
+        account.setUsername(profileUserName.getText().toString());
     }
 
     @Override
