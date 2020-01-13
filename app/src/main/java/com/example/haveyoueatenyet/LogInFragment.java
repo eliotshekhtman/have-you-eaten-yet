@@ -36,23 +36,5 @@ public class LogInFragment extends Fragment {
         else super.onBackPressed();
     } */
 
-    public void logIn(View view) {
-        TextView usernameView = view.findViewById(R.id.usernameLogIn);
-        TextView passwordView = view.findViewById(R.id.passwordLogIn);
-        fetchAccount(usernameView.getText().toString(), passwordView.getText().toString());
-    }
 
-    private void fetchAccount(String username, String password) {
-        // TODO: setup online retrieval
-        Toast.makeText(getActivity(), "Online functionality not implemented yet", Toast.LENGTH_SHORT).show();
-    }
-
-    public void putId(long id) {
-        SharedPreferences mPrefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        prefsEditor.clear();
-        prefsEditor.putLong("accountId", PersonalActivity.account.getId());
-        prefsEditor.apply();
-        prefsEditor.commit();
-    }
 }
