@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class InitActivity extends AppCompatActivity {
+    static boolean first_open = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +28,11 @@ public class InitActivity extends AppCompatActivity {
         // Retrieve account id from internal storage
         SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
         long accountId = mPrefs.getLong("accountId", 0);
-        if(accountId != 0) {
+        if(accountId != 0 && !first_open) {
+            first_open = true;
             //TODO: fetch account from online and init account
             PersonalActivity.account = new Account("a", "b", "c");
-            Intent intentSwitch = new Intent(this, StartActivity.class);
-            startActivity(intentSwitch);
+            goToStart();
         }
         else {
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -39,6 +41,11 @@ public class InitActivity extends AppCompatActivity {
             fragmentTransaction.add(R.id.fragment_container, logIn);
             fragmentTransaction.commit();
         }
+    }
+
+    public void goToStart() {
+        Intent intentSwitch = new Intent(this, StartActivity.class);
+        startActivity(intentSwitch);
     }
 
     public void goToSignUp(View view) {
@@ -64,7 +71,7 @@ public class InitActivity extends AppCompatActivity {
         String username = usernameView.getText().toString();
         String password = passwordView.getText().toString();
         setAccount(new Account(name, username, password));
-
+        goToStart();
     }
 
     public void setAccount(Account account) {
