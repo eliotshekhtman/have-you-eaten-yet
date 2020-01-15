@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/mealName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Meal Name" />
+
+        <TextView
+            android:id="@+id/mealId"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Meal Id" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/mealDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Meal Description\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a nisi quam. Suspendisse potenti. Fusce lectus massa, tristique ac lorem ut, varius consectetur urna. Pellentesque congue tempor diam, ac sodales nulla commodo sed. Curabitur congue eleifend ornare. Maecenas suscipit auctor dignissim. Ut ultricies blandit urna, et malesuada sapien egestas ac. Nulla id eros tempor, maximus urna sed, ultricies purus. Curabitur ut tortor pretium, facilisis elit fermentum, efficitur mi. Nunc mattis quam eget consequat semper. Duis quis aliquet sem. In elementum, turpis vitae ornare ultrices, elit nulla laoreet massa, at vehicula tortor nunc non dolor. Vivamus blandit semper orci, et aliquet erat fermentum id. Aliquam sit amet nunc et ipsum fermentum hendrerit. Suspendisse sapien elit, vehicula quis nisl id, rhoncus fringilla nunc. Cras eleifend leo ipsum, nec condimentum nibh faucibus quis." />
+
+    <TextView
+        android:id="@+id/mealTags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Meal Tags" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reserve a spot!" />
+</LinearLayout>

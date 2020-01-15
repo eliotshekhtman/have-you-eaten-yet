@@ -14,10 +14,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView tags;
+        TextView id;
         public MyViewHolder(View itemView) {
             super(itemView);
             this.name = (TextView) itemView.findViewById(R.id.mealName);
-            this.tags = (TextView) itemView.findViewById(R.id.tags);
+            this.id = (TextView) itemView.findViewById(R.id.mealId);
+            this.tags = (TextView) itemView.findViewById(R.id.mealTags);
         }
     }
 
@@ -37,9 +39,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, final int listPos) {
         TextView name = holder.name;
         TextView tags = holder.tags;
+        TextView id = holder.id;
 
         name.setText(meals.get(listPos).getMealName());
         tags.setText("#food");
+        id.setText(""+meals.get(listPos).getMealId());
     }
 
     @Override
