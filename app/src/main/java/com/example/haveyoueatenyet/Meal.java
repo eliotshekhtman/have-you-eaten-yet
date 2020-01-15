@@ -19,4 +19,18 @@ public class Meal {
     // want to set a character limit - let's say 1 kbyte for now
     private String description;
 
+    public Meal(Account account, String mealName,
+                long latitude, long longitude, String description) {
+        hostName = account.getName();
+        hostId = account.getId();
+        this.mealName = mealName;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.description = description;
+        //TODO: online
+        mealId = 1;
+    }
+
+    public String getMealName() { return mealName; }
+
 }

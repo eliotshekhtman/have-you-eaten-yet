@@ -14,7 +14,8 @@ public class Account {
 
     public int hash(String username, String password) {
         //TODO: make a better and more secure hash function
-        return Integer.parseInt("" + intifyString(username) + "99" + intifyString(password));
+        //return Integer.parseInt("" + intifyString(username) + "99" + intifyString(password));
+        return 1;
     }
 
     public int intifyString(String str) {
