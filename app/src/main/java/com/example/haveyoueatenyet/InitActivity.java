@@ -101,6 +101,7 @@ public class InitActivity extends AppCompatActivity {
         Toast.makeText(this, "Online functionality not implemented yet", Toast.LENGTH_SHORT).show();
         return null;
     }
+    
     public void putId(long id) {
         SharedPreferences mPrefs = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();

@@ -3,13 +3,26 @@ package com.example.haveyoueatenyet;
 public class Account {
     private long id;
     private String name;
+    private String description;
     private String username;
     private String password;
 
     public Account(String name, String username, String password) {
         this.name = name; this.username = username; this.password = password;
-        // TODO: figure out how to dynamically set id after online shit is figured out
-        id = 1;
+        id = hash(username, password);
+    }
+
+    public int hash(String username, String password) {
+        //TODO: make a better and more secure hash function
+        return Integer.parseInt("" + intifyString(username) + "99" + intifyString(password));
+    }
+
+    public int intifyString(String str) {
+        int result = 0;
+        for(int i = 0; i < str.length(); i++) {
+            result = result * 100 + ((int) str.charAt(i));
+        }
+        return result;
     }
 
     public long getId() { return id; }
