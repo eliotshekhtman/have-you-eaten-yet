@@ -51,7 +51,7 @@ public class DirectoryActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private static class MyOnClickListener implements View.OnClickListener {
+    private class MyOnClickListener implements View.OnClickListener {
         private final Context context;
         private MyOnClickListener(Context context) {
             this.context = context;
@@ -81,7 +81,9 @@ public class DirectoryActivity extends AppCompatActivity {
             if(meal == null) throw new NullPointerException("No meal with expected id found");
             Log.d("MyOnClickListener", "found meal with name " + meal.getMealName());
 
-
+            Intent intent = new Intent(context, MealActivity.class);
+            intent.putExtra("meal", meal);
+            startActivity(intent);
         }
     }
 }
