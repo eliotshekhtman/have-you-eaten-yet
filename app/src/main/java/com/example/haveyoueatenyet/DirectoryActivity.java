@@ -36,11 +36,10 @@ public class DirectoryActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         // Populate meals
         //TODO: figure out how to pull from online aaa
         meals = new ArrayList<Meal>();
-        meals.add(new Meal(new Account("AName", "AUser", "APass"), "MName", 0, 0, "MDesc"));
+        meals.add(new Meal(new Account("AName", "AUser", "APass"), "MName", -34, 151, "MDesc"));
         meals.add(new Meal(new Account("AName1", "AUser1", "APass1"), "MName1", 0, 0, "MDesc1"));
         meals.add(new Meal(new Account("AName2", "AUser2", "APass2"), "MName2", 0, 0, "MDesc2"));
         meals.add(new Meal(new Account("AName3", "AUser3", "APass3"), "MName3", 0, 0, "MDesc3"));

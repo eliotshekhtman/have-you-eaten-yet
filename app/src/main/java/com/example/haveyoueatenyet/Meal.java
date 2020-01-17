@@ -41,6 +41,8 @@ public class Meal implements Parcelable {
     public String getMealName() { return mealName; }
     public long getMealId() { return mealId; }
     public String getMealDesc() { return description; }
+    public long getLatitude() { return latitude; }
+    public long getLongitude() { return longitude; }
 
     public int describeContents() {
         return 0;
