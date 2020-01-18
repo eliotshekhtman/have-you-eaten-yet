@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
         android:onClick="logIn"
-        android:text="Log in / Sign up"
+        android:text="Change account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

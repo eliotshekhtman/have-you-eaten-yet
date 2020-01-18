@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class InitActivity extends AppCompatActivity {
+    static final short MIN_PASSWORD_LENGTH = 8;
+    static final short MIN_USERNAME_LENGTH = 5;
     static boolean first_open = false;
 
     @Override
@@ -70,8 +72,26 @@ public class InitActivity extends AppCompatActivity {
         String name = nameView.getText().toString();
         String username = usernameView.getText().toString();
         String password = passwordView.getText().toString();
-        setAccount(new Account(name, username, password));
-        goToStart();
+        // TODO: check if username is unique
+        if(name.length() == 0)
+            Toast.makeText(this,
+                    "Please let us know what to call you!", Toast.LENGTH_SHORT).show();
+        else if(username.length() < MIN_USERNAME_LENGTH)
+            Toast.makeText(this,
+                    "Username too short! Minimum length is "+MIN_USERNAME_LENGTH+" characters",
+                    Toast.LENGTH_SHORT).show();
+        else if(/*not unique username*/ false)
+            Toast.makeText(this,
+                    "Somebody else already picked that username", Toast.LENGTH_SHORT).show();
+        else if(password.length() < MIN_PASSWORD_LENGTH)
+            Toast.makeText(this,
+                    "Password too short! Minimum length is "+MIN_PASSWORD_LENGTH+" characters",
+                    Toast.LENGTH_SHORT).show();
+        else {
+            setAccount(new Account(name, username, password));
+            goToStart();
+        }
+
     }
 
     public void setAccount(Account account) {
@@ -92,14 +112,31 @@ public class InitActivity extends AppCompatActivity {
     public void logIn(View view) {
         EditText usernameView = (EditText) findViewById(R.id.usernameLogIn);
         EditText passwordView = (EditText) findViewById(R.id.passwordLogIn);
-        PersonalActivity.account = fetchAccount(usernameView.getText().toString(), passwordView.getText().toString());
-        // TODO: online retrieval
+        String username = usernameView.getText().toString();
+        String password = passwordView.getText().toString();
+        if(username.length() == 0)
+            Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
+        else if(password.length() == 0)
+            Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
+        else {
+            /*
+                Collecting both and sending to fetchAccount() because
+                have to maintain the abstraction of not letting them know
+                what is wrong
+            */
+            try {
+                PersonalActivity.account = fetchAccount(username, password);
+            } catch (NullPointerException e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private Account fetchAccount(String username, String password) {
         // TODO: setup online retrieval
-        Toast.makeText(this, "Online functionality not implemented yet", Toast.LENGTH_SHORT).show();
-        return null;
+        if(/*incorrect password or no such username*/ false)
+            throw new NullPointerException("Incorrect username/password");
+        throw new NullPointerException("Online connection not implemented yet");
     }
     
     public void putId(long id) {
