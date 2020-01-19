@@ -6,6 +6,8 @@ public class Account {
     private String description;
     private String username;
     private String password;
+    private double currLat;
+    private double currLong;
 
     public Account(String name, String username, String password) {
         this.name = name; this.username = username; this.password = password;
@@ -29,8 +31,12 @@ public class Account {
     public String getName() { return name; }
     public String getUsername() { return username; }
     public String getPassword() { return password; }
+    public double getLatitude() { return currLat; }
+    public double getLongtiude() { return currLong; }
 
     public void setName(String name) { this.name = name; }
     public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) { this.password = password; }
+    public void setLatitude(double lat) { currLat = lat; }
+    public void setLongitude(double lon) { currLong = lon; }
 }

@@ -69,6 +69,14 @@ public class Meal implements Parcelable {
         description = in.readString();
     }
 
+    public double getDistance() {
+        double latitudeDisplacementSq =
+                Math.pow(latitude - PersonalActivity.account.getLatitude(), 2);
+        double longitudeDisplacementSq =
+                Math.pow(longitude - PersonalActivity.account.getLongtiude(), 2);
+        return Math.pow(latitudeDisplacementSq + longitudeDisplacementSq, 0.5);
+    }
+
     public static final Parcelable.Creator<Meal> CREATOR
             = new Parcelable.Creator<Meal>() {
         public Meal createFromParcel(Parcel in) {

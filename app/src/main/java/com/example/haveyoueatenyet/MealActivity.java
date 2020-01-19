@@ -60,7 +60,9 @@ public class MealActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Add a marker in Sydney and move the camera
         LatLng loc = new LatLng(meal.getLatitude(), meal.getLongitude());
+        LatLng you = new LatLng(PersonalActivity.account.getLatitude(), PersonalActivity.account.getLongtiude());
         mMap.addMarker(new MarkerOptions().position(loc).title("Where you'll eat!"));
+        mMap.addMarker(new MarkerOptions().position(you).title("Your current location!"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
     }
 }

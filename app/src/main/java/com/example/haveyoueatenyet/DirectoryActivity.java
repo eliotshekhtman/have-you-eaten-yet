@@ -1,21 +1,40 @@
 package com.example.haveyoueatenyet;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+
 import java.util.ArrayList;
 
 public class DirectoryActivity extends AppCompatActivity {
+    private FusedLocationProviderClient fusedLocationClient;
+    protected static final int REQUEST_CHECK_SETTINGS = 0x1;
+
     private static RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
@@ -27,6 +46,8 @@ public class DirectoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = this.getIntent();
         setContentView((R.layout.activity_directory));
+
+        setLocation();
 
         myOnClickListener = new MyOnClickListener(this);
 
@@ -48,6 +69,10 @@ public class DirectoryActivity extends AppCompatActivity {
 
         adapter = new CustomAdapter(meals);
         recyclerView.setAdapter(adapter);
+    }
+
+    public void newMeal(View view) {
+
     }
 
     private class MyOnClickListener implements View.OnClickListener {
@@ -84,5 +109,22 @@ public class DirectoryActivity extends AppCompatActivity {
             intent.putExtra("meal", meal);
             startActivity(intent);
         }
+    }
+
+    protected void setLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            PersonalActivity.account.setLatitude(location.getLatitude());
+                            PersonalActivity.account.setLongitude(location.getLongitude());
+                        }
+                    }
+                });
     }
 }

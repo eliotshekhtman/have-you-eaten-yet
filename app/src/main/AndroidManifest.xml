@@ -46,7 +46,10 @@
             android:name=".PersonalActivity"
             android:label="Your Account"></activity>
         <activity
-            android:name=".MealActivity"/>
+            android:name=".MealActivity" />
+        <activity
+            android:name=".NewMealActivity"
+            android:label="Create a new meal!" />
     </application>
 
 </manifest>
